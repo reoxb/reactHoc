@@ -4,18 +4,19 @@ import "./App.css";
 class App extends React.Component {
   constructor(props) {
     super(props)
-    
-    this.state = {
-      isLoggedIn: false
-    }
+    this.state = { isLoggedIn: false }
+    this.toggleAuth = this.toggleAuth.bind(this)
   }
   
-  toggleAuth = () => {
-    this.setState((prevState, props) => ({ isLoggedIn: !prevState.isLoggedIn }))
+  toggleAuth() {
+    // establece el estado en funcion del anterior con el argumento updater 
+    // https://es.reactjs.org/docs/react-component.html#setstate
+    
+    this.setState( (prevState, props) => ({isLoggedIn: !prevState.isLoggedIn}) )
   }
 
-  
   render() {
+
     const { isLoggedIn } = this.state
     return (
       <div>
@@ -26,8 +27,9 @@ class App extends React.Component {
       </div>
     );
   }
-}
+} // end class App 
 
+// react hoc
 function AuthWrapper(WrappedComponent) {
   return class extends React.Component {
     render() {
